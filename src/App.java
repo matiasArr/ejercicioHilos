@@ -14,6 +14,8 @@ public class App {
         hiloDos.interrupt();
         
         */
+        //jgadogdja
+
         System.out.println("dame un numero");
         double  n =  sc.nextDouble();
 
