@@ -20,4 +20,5 @@ public class proc extends Thread{
         getNum();
         //numero = fa;
     }
+   
 }

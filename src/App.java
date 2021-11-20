@@ -15,7 +15,6 @@ public class App {
         
         */
         
-
         System.out.println("dame un numero");
         double  n =  sc.nextDouble();
 
