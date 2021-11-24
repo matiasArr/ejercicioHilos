@@ -1,19 +1,20 @@
 class FutureComputation implements Runnable {
-declarar parámetros
-tipo-retorno res;
-Thread t;
-FutureComputation(parámetros) {
-asignar parámetros
-t= new Thread(this);
-t.start();
+    <declarar parámetros
+    tipo-retorno res;
+    Thread t;
+    FutureComputation(parámetros) {
+    asignar parámetros
+    t= new Thread(this);
+    t.start();
 }
-public void run() {
-res= calcular
+    public void run() {
+    res= calcular
+    }
+    tipo-retorno get() {
+        try {
+            t.join();
+            return res;
+        }
+        catch (InterruptedException excp) { ... }
+    } 
 }
-tipo-retorno get() {
-try {
-t.join();
-return res;
-}
-catch (InterruptedException excp) { ... }
-} }
