@@ -1,24 +1,21 @@
 public class proc extends Thread{
-    double numero;
-    double fa = 0.0;
+    double mitad;
+    double resultado;
+
     //contructor
-    public proc(double num){
-        numero = num;
+    public proc(double mitad){
+        this.mitad = mitad;
     }
+
+    @Override
     public void run(){
-        for (int i = 1; i <= numero; i++) {
-            fa = fa + i*(i+1);
+        resultado = fact(mitad);
+    }
+    public double fact(double mitad){
+        double res = 1.0;
+        for (double i = 1; i <= mitad ; i++) {
+            res *= i;
         }
-        setNum(fa);
-        
+        return res; 
     }
-    public double getNum(){
-        return numero;
-    }
-    public void setNum(double fa){
-        numero = 0;
-        getNum();
-        //numero = fa;
-    }
-   
 }
