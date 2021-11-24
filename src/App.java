@@ -82,6 +82,6 @@ public class App {
         hiloUno.start();
         resu = hiloUno.getNum();
         hiloUno.interrupt();
-        return resu;
+        return resu
     }*/
 }
