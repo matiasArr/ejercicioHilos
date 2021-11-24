@@ -1,12 +1,22 @@
 public class procDos extends Thread{
-    public void run(){
-       dualFib(2);
+    double otraMitad;
+    double resultado;
+    double nFactorial;
+
+    public procDos(double otraMitad, double nFactorial){
+        this.otraMitad = otraMitad;
+        this.nFactorial = nFactorial;
     }
-    public static int dualFib(int n){
-        if(n <= 20){
-            return -1;
+
+    public void run(){
+       resultado = fact(otraMitad , nFactorial);
+    }
+    public double fact(double otraMitad, double nFactorial){
+        double res = 1.0;
+        for (double i = otraMitad; i <= nFactorial ; i++) {
+            res *= i; // -> res = res * i
         }
-        return -1;
+        return res; 
     }
 
 

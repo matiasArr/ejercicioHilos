@@ -8,32 +8,27 @@ public class App {
 
      - HAY UN PROBLEMA CON EL METODO RECURSIVO(ALGO CON LA STACK) SOLUCION: -XSS
      - EL METODO ITERATIVO LANZA UN ERROR CON EL TIPO LONG
-     - FALTA AGREGAR EL APARTADO DEL HILOS(SE CREAN DOS HILOS)
+     - SE CREO EL METODO CON LOS HILOS(FALTA EL CASO: NUMERO NO ES PAR) 
      
     */
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        double resultado;
-
+        //Scanner sc = new Scanner(System.in);
+        double numero = 10;
+        double respuesta;
         double start = System.currentTimeMillis();
-        long numero = 100L;
-        long res = iterativa(numero);
+        respuesta = factorialHilos(numero);
+        double end = System.currentTimeMillis();
+        System.out.println("Fact( "+numero +" ) = "+respuesta);
+        System.out.println("Y los milisegundos son: "+ (end-start));
+
+        /*
+        double start = System.currentTimeMillis();
+        long num = 1000000L;
+        long res = (num);
         System.out.println(String.valueOf(res));  
         double end = System.currentTimeMillis();
 
         System.out.println("Y los milisegundos son: "+ (end-start));
-
-        /*
-        JUGANDO CON HILOS
-        proc hiloUno = new proc();
-        procDos hiloDos = new procDos();
-        hiloDos.start();
-        //hiloUno.start();
-        //hiloUno.interrupt();
-        hiloDos.interrupt();
-        System.out.println("dame un numero");
-        double  n =  sc.nextDouble();
-        */
     }
     public static long iterativa(long nu){
         long res = 1L;
@@ -63,25 +58,23 @@ public class App {
         }*/
 
     }
+    //METODO CON HILOS
+    public static double  factorialHilos(double num) throws InterruptedException{
+        double mitad = num/2;
 
-    /*
-    
-    METODO QUE SE APLICARA PARA LOS HILOS
+        proc hiloUno = new proc(mitad);
+        procDos hiloDos = new procDos(mitad + 1.0,num);
 
-    public static int factorial(int num){
-        
-        
-        //double res = iterativa((int)num);
-        
-
-        //double resu = recursiva((int )num);
-
-        ouble n = num/2;
-        double resu;
-        proc hiloUno = new proc(n);
         hiloUno.start();
-        resu = hiloUno.getNum();
-        hiloUno.interrupt();
-        return resu;
-    }*/
+        hiloDos.start();
+        hiloUno.join();
+        hiloDos.join();
+        double resu1 = hiloUno.resultado;
+        double resu2 = hiloDos.resultado;
+        double resultadoFi = resu1 * resu2;
+        
+        return resultadoFi;
+        //System.out.println("El factorial de "+num +" es: "+resultadoFi);
+    }
 }
+
