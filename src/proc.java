@@ -2,11 +2,11 @@ import java.math.BigInteger;
 
 public class proc implements Runnable{
     //declaracion de variables
-    Long mitad;
+    long mitad;
     BigInteger resultado;
     Thread hiloUno;
     //contructor
-    public proc(Long mitad){
+    public proc(long mitad){
         this.mitad = mitad;
         hiloUno = new Thread(this);
         hiloUno.start();
@@ -14,9 +14,9 @@ public class proc implements Runnable{
     public void run(){
         resultado = fact(mitad);
     }
-    public BigInteger fact(Long mitad){
+    public BigInteger fact(long mitad){
         BigInteger res = BigInteger.valueOf(1L);
-        for (Long i = 1L; i <= mitad ; i++) {
+        for (long i = 1L; i <= mitad ; i++) {
             res = res.multiply(BigInteger.valueOf(i));  
         }
         return res;

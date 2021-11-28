@@ -13,7 +13,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         double numero = 160.0;
-        Long val = new Long(1000L);
+        long val = 1000L;
         
         double start = System.currentTimeMillis();
         BigInteger respuesta = recursiva(val);
@@ -21,14 +21,14 @@ public class App {
         System.out.println("Factorial( "+numero +" ) = "+respuesta.toString());
         System.out.println("Y los milisegundos son: "+ (end-start));
     }
-    public static BigInteger iterativa(Long nu){
+    public static BigInteger iterativa(long nu){
         BigInteger res = BigInteger.valueOf(1L);
-        for (Long i = 1L; i <= nu ; i++) {
+        for (long i = 1L; i <= nu ; i++) {
             res = res.multiply(BigInteger.valueOf(i));  // res = res * i
         }
         return res;
     }
-    public static BigInteger recursiva(Long num){
+    public static BigInteger recursiva(long num){
         if (num == 1L) {
             return BigInteger.valueOf(num);
         } else {
@@ -36,8 +36,8 @@ public class App {
         }
     }
     //METODO CON HILOS
-    public static BigInteger factorialHilos(Long num){
-        Long mitad = num/2;
+    public static BigInteger factorialHilos(long num){
+        long mitad = num/2;
 
         proc hiloUno = new proc(mitad);
         procDos hiloDos = new procDos(mitad + 1L,num);
