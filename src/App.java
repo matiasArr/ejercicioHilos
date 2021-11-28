@@ -12,58 +12,37 @@ public class App {
     */
 
     public static void main(String[] args) throws Exception {
-        //Scanner sc = new Scanner(System.in);
         double numero = 160.0;
-        double respuesta;
-        double start = System.currentTimeMillis();
-        respuesta = factorialHilos(numero);
-        double end = System.currentTimeMillis();
-        System.out.println("Fact( "+numero +" ) = "+respuesta);
-        System.out.println("Y los milisegundos son: "+ (end-start));
-
+        Long val = new Long(1000L);
         
-        /*double start = System.currentTimeMillis();
-        long num = 1000000L;
-        long res = (num);
-        System.out.println(String.valueOf(res));  
+        double start = System.currentTimeMillis();
+        BigInteger respuesta = recursiva(val);
         double end = System.currentTimeMillis();
-
-        System.out.println("Y los milisegundos son: "+ (end-start));*/
+        System.out.println("Factorial( "+numero +" ) = "+respuesta.toString());
+        System.out.println("Y los milisegundos son: "+ (end-start));
     }
-    public static double iterativa(double nu){
-        double res = 1.0;
-        for (double i = 1.0; i <= nu ; i++) {
-            res *= i;
+    public static BigInteger iterativa(Long nu){
+        BigInteger res = BigInteger.valueOf(1L);
+        for (Long i = 1L; i <= nu ; i++) {
+            res = res.multiply(BigInteger.valueOf(i));  // res = res * i
         }
         return res;
     }
-    public static double recursiva(double num){
-        if (num == 1) {
-            return num;
+    public static BigInteger recursiva(Long num){
+        if (num == 1L) {
+            return BigInteger.valueOf(num);
         } else {
-            return num * recursiva(num - 1);
+            return BigInteger.valueOf(num).multiply(recursiva(num - 1L));
         }
     }
     //METODO CON HILOS
-    public static double factorialHilos(double num){
-        // se debe aplicar el patron futuro
-        double mitad = num/2;
+    public static BigInteger factorialHilos(Long num){
+        Long mitad = num/2;
+
         proc hiloUno = new proc(mitad);
-        procDos hiloDos = new procDos(mitad + 1.0,num);
+        procDos hiloDos = new procDos(mitad + 1L,num);
 
-        return (hiloUno.get() * hiloDos.get());
-
-       /* hiloUno.start();
-        hiloDos.start();
-        hiloUno.join();
-        hiloDos.join();
-
-        double resu1 = hiloUno.fact(mitad);
-        double resu2 = hiloDos.fact(mitad, num);
-        double resultadoFi = resu1 * resu2;
-        */
-        //return resultadoFi;
-        //System.out.println("El factorial de "+num +" es: "+resultadoFi);
+        return hiloUno.get().multiply(hiloDos.get());
     }
 }
 

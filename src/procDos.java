@@ -1,10 +1,14 @@
-public class procDos implements Runnable{
-    double otraMitad;
-    double resultado;
-    double nFactorial;
-    Thread hiloDos;
+import java.math.BigInteger;
 
-    public procDos(double otraMitad, double nFactorial){
+public class procDos implements Runnable{
+    //declaracion de variables
+    Long otraMitad;
+    BigInteger resultado;
+    Long nFactorial;
+    Thread hiloDos;
+    
+    //contructor
+    public procDos(Long otraMitad, Long nFactorial){
         this.otraMitad = otraMitad;
         this.nFactorial = nFactorial;
         hiloDos = new Thread(this);
@@ -13,22 +17,19 @@ public class procDos implements Runnable{
     public void run(){
        resultado = fact(otraMitad , nFactorial);
     }
-    public double fact(double otraMitad, double nFactorial){
-        double res = 1.0;
-        for (double i = otraMitad; i <= nFactorial ; i++) {
-            res *= i; // -> res = res * i            }
+    public BigInteger fact(Long otraMitad, Long nFactorial){
+        BigInteger res = BigInteger.valueOf(1L);
+        for (Long i = otraMitad; i <= nFactorial ; i++) {
+            res = res.multiply(BigInteger.valueOf(i));  
         }
-         return res; 
-        
+        return res;
     }
-    public double get(){
+    public BigInteger get(){
         try {
             hiloDos.join();
             return resultado;
         } catch (InterruptedException e) {
-            return 0;
+            return BigInteger.valueOf(0L);
         }
     }
-
-
 }
