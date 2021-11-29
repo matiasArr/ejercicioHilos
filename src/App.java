@@ -8,11 +8,11 @@ import java.math.*;
 
 public class App {
     /*
-      NOTAS PARA LA PROXIMA VUELTA
-
-     - ESTA LA OPCION DE ELIMINAR LOS METODOS FACT QUE SE ENCUENTRAN EN LOS HILOS 
-     - SE CREO EL METODO CON LOS HILOS(FALTA EL CASO: NUMERO NO ES PAR) 
-
+    Preguntas:
+     1-¿Si calculamos el factorial de 1.000.000 iterativamente es más eficiente
+     que hacerlo con 2 hilos?
+     2-¿Si calculamos el factorial de 1.000.000 recursivamente es más
+     eficiente que hacerlo con 2 hilos?
     */
 
     public static void main(String[] args) throws Exception {
@@ -20,32 +20,49 @@ public class App {
         FileOutputStream fos = new FileOutputStream(f);
         PrintWriter w = new PrintWriter(fos);
         
-        long val = 1000000L;
+        long val = 100000L;
+        w.println("Factorial("+val+")");
+        System.out.println("Estadísticas");
 
-        w.flush();
         double start = System.currentTimeMillis();
         BigInteger respuesta = iterativa(val);
         double end = System.currentTimeMillis();
-        w.println("Factorial( "+val +" ) calculado de manera iterativa es:\n"+respuesta.toString());
-        w.println("Y los milisegundos son: "+ (end-start));
+        double tiempoIte = end-start;
+        System.out.println("los milisegundos son con el metodo iterativo es: "+ tiempoIte);
+        w.println("los milisegundos con el metodo iterativo es: "+ tiempoIte);
         w.flush();
 
         start = System.currentTimeMillis();
         BigInteger respuesta2 = recursiva(val);
         end = System.currentTimeMillis();
-        w.println("Factorial( "+val +" ) calculado de manera recursiva es:\n"+respuesta2.toString());
-        w.println("Y los milisegundos son: "+ (end-start));
+        double tiempoRec = end-start;
+        w.println("los milisegundos con el metodo recursivo es: "+ tiempoRec);
+        System.out.println("los milisegundos son con el metodo recursivo es: "+ tiempoRec);
         w.flush();
 
         start = System.currentTimeMillis();
         BigInteger respuesta3 = factorialHilos(val);
         end = System.currentTimeMillis();
-        w.println("Factorial( "+val +" ) calculado de manera concurrente es:\n"+respuesta3.toString());
-        w.println("Y los milisegundos son: "+ (end-start));
+        double tiempoCon = end-start;
+        System.out.println("los milisegundos son con el metodo concurrente es: "+ tiempoCon);
+        w.println("los milisegundos con el metodo concurrente es: "+ tiempoCon);
+        w.println("Factorial( "+val +" ) es:\n"+respuesta3.toString());
         w.flush();
 
+        //comparación método iterativo con el concurrente (siempre será mejor el concurrente a menos que se modifiquen los valores)
+        if(tiempoIte>tiempoCon){
+            System.out.println("Pregunta 1: Entre el método iterativo y el concurrente, el más rápido es el concurrente");
+        }else{
+            System.out.println("Pregunta 1: Entre el método iterativo y el concurrente, el más rápido es el iterativo");
+        }
 
-        w.flush();
+        //comparación método recursivo con el concurrente (siempre será mejor el concurrente a menos que se modifiquen los valores)
+        if(tiempoRec>tiempoCon){
+            System.out.println("Pregunta 2: Entre el método recursivo y el concurrente, el más rápido es el concurrente");
+        }else{
+            System.out.println("Pregunta 2: Entre el método recursivo y el concurrente, el más rápido es el recursivo");
+        }
+
         w.close();
     }
     
