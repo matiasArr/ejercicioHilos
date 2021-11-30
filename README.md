@@ -1,4 +1,4 @@
-Ejercicio Lab Hilos 
+-------------------------- Ejercicio Lab Hilos------------------------------------ 
 
  Es importante aclarar que para efecto de prueba se utiliza un long de 100.000
  Esto para mostrar los resultados en un tiempo razonable.
@@ -10,3 +10,5 @@ Ejercicio Lab Hilos
  Luego ejecutar los comandos
     - javac App.java
     - java -Xss800m App
+
+ Los resultado de la ejecución quedan guardados en el archivo respuestas.txt
