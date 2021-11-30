@@ -22,30 +22,30 @@ public class App {
         
         long val = 100000L;
         w.println("Factorial("+val+")");
-        System.out.println("Estadísticas");
+        System.out.println(" ** Estadísticas ** ");
 
         double start = System.currentTimeMillis();
         BigInteger respuesta = iterativa(val);
         double end = System.currentTimeMillis();
         double tiempoIte = end-start;
-        System.out.println("los milisegundos son con el metodo iterativo es: "+ tiempoIte);
-        w.println("los milisegundos con el metodo iterativo es: "+ tiempoIte);
+        System.out.println("Los milisegundos son con el metodo iterativo es: "+ tiempoIte);
+        w.println("Los milisegundos con el metodo iterativo es: "+ tiempoIte);
         w.flush();
 
         start = System.currentTimeMillis();
         BigInteger respuesta2 = recursiva(val);
         end = System.currentTimeMillis();
         double tiempoRec = end-start;
-        w.println("los milisegundos con el metodo recursivo es: "+ tiempoRec);
-        System.out.println("los milisegundos son con el metodo recursivo es: "+ tiempoRec);
+        w.println("Los milisegundos con el metodo recursivo es: "+ tiempoRec);
+        System.out.println("Los milisegundos son con el metodo recursivo es: "+ tiempoRec);
         w.flush();
 
         start = System.currentTimeMillis();
         BigInteger respuesta3 = factorialHilos(val);
         end = System.currentTimeMillis();
         double tiempoCon = end-start;
-        System.out.println("los milisegundos son con el metodo concurrente es: "+ tiempoCon);
-        w.println("los milisegundos con el metodo concurrente es: "+ tiempoCon);
+        System.out.println("Los milisegundos son con el metodo concurrente es: "+ tiempoCon);
+        w.println("Los milisegundos con el metodo concurrente es: "+ tiempoCon);
         w.println("Factorial( "+val +" ) es:\n"+respuesta3.toString());
         w.flush();
 
